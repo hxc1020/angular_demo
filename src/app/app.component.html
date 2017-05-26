@@ -1,3 +1,26 @@
-<h1>
-  {{title}}
-</h1>
+<md-toolbar color="primary" class="mat-elevation-z6 header-wrapper">
+  <span><a class="logo">社区</a></span>
+  <div class="container">
+
+    <nav md-tab-nav-bar>
+      <a *ngFor="let link of links"
+         [routerLink]="link.link"
+         routerLinkActive #rla="routerLinkActive" md-tab-link
+         [active]="rla.isActive">
+        <i class="material-icons md-light">{{link.linkIcon}}</i>
+        <span class="nav-name">{{link.label}}</span>
+      </a>
+    </nav>
+
+  </div>
+  <span> <a [routerLink]="['/sign-up']" md-button>注册</a></span>
+  <span><a [routerLink]="['/sign-in']" md-button>登录</a> </span>
+</md-toolbar>
+
+
+<div class="container p-3 py-5 my-5">
+  <div class="row">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+

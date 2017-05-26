@@ -1,0 +1,21 @@
+/*.w-400{*/
+  /*width: 400px;*/
+/*}*/
+
+.sign {
+  width: 400px;
+  height: 600px;
+  margin: 60px auto 0;
+  padding: 50px 50px 30px;
+  background-color: #fff;
+  border-radius: 4px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.Absolute-Center {
+  margin: auto;
+  position: absolute;
+  vertical-align: middle;
+   left: 0;  right: 0;
+}
