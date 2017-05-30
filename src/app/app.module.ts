@@ -5,7 +5,7 @@ import {HttpModule} from '@angular/http';
 import {
   MdButtonModule, MdCardModule, MdCheckboxModule, MdTabsModule,
   MdToolbarModule, MdSidenavModule, MdIconModule, MdListModule,
-  MdChipsModule, MdGridListModule, MdInputModule
+  MdChipsModule, MdGridListModule, MdInputModule, MdMenuModule
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
 
@@ -21,11 +21,14 @@ import {BookComponent} from './book/book.component';
 import {PersonalComponent} from './personal/personal.component';
 import {AboutComponent} from './about/about.component';
 import {RegisterComponent} from './register/register.component';
-import {NoteComponent} from '../shared/component/note/note.component';
+import {NoteComponent} from './shared/component/note/note.component';
 import { SignInComponent } from './sign/sign-in/sign-in.component';
 import { SignUpComponent } from './sign/sign-up/sign-up.component';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {SignInService} from "./sign/sign-in/sign-in.service";
+import {SignInService} from './sign/sign-in/sign-in.service';
+import {MyHttp} from './shared/service/MyHttp';
+import {AuthService} from './shared/service/auth.service';
+import { UserInfoComponent } from './user-info/user-info.component';
 
 
 const rootRouterModule: ModuleWithProviders = RouterModule.forRoot(rootRouterConfig);
@@ -35,7 +38,7 @@ const rootRouterModule: ModuleWithProviders = RouterModule.forRoot(rootRouterCon
   declarations: [
     AppComponent, HomepageComponent, NoticeComponent,
     ActivityComponent, BlogComponent, BookComponent, PersonalComponent,
-    AboutComponent, RegisterComponent, NoteComponent, SignInComponent, SignUpComponent
+    AboutComponent, RegisterComponent, NoteComponent, SignInComponent, SignUpComponent, UserInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -43,12 +46,12 @@ const rootRouterModule: ModuleWithProviders = RouterModule.forRoot(rootRouterCon
     HttpModule,
     RouterModule,
     MdButtonModule, MdCheckboxModule, MdTabsModule, MdCardModule, MdToolbarModule, MdSidenavModule,
-    MdIconModule, MdListModule, MdChipsModule, MdGridListModule, MdInputModule,
+    MdIconModule, MdListModule, MdChipsModule, MdGridListModule, MdInputModule, MdMenuModule,
     AlertModule.forRoot(), CarouselModule,
     rootRouterModule,
     BrowserAnimationsModule, NoopAnimationsModule
   ],
-  providers: [SignInService],
+  providers: [SignInService, MyHttp, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

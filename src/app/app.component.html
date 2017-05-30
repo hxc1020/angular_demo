@@ -1,4 +1,4 @@
-<md-toolbar color="primary" class="mat-elevation-z6 header-wrapper">
+<md-toolbar color="default" class="mat-elevation-z6 header-wrapper" >
   <span><a class="logo">社区</a></span>
   <div class="container">
 
@@ -13,14 +13,15 @@
     </nav>
 
   </div>
-  <span> <a [routerLink]="['/sign-up']" md-button>注册</a></span>
-  <span><a [routerLink]="['/sign-in']" md-button>登录</a> </span>
+  <div *ngIf="!isSigned()" ><span> <a [routerLink]="['/sign-up']" md-button>注册</a></span>
+    <span><a [routerLink]="['/sign-in']" md-button>登录</a> </span></div>
+  <div *ngIf="isSigned()"><app-user-info [name]="userName"></app-user-info></div>
 </md-toolbar>
 
 
 <div class="container p-3 py-5 my-5">
   <div class="row">
-    <router-outlet></router-outlet>
+    <router-outlet  (signedEvent) = "signed()"></router-outlet>
   </div>
 </div>
 

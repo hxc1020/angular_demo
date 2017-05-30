@@ -1,0 +1,9 @@
+<div [mdMenuTriggerFor]="menu"><img src="../../assets/img/user/default.jpg" alt="click" class="user-head-img">
+  <i class="material-icons" >keyboard_arrow_down</i>
+  {{name}}
+</div>
+<md-menu #menu="mdMenu">
+  <button md-menu-item>个人信息</button>
+  <button md-menu-item>消息</button>
+  <button md-menu-item (click)="logOut()">退出登录</button>
+</md-menu>

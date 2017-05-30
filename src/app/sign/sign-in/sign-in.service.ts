@@ -1,9 +1,6 @@
 import {Http} from '@angular/http';
 import {Injectable} from '@angular/core';
-/**
- * Created by 林皓 on 2017/5/26 0026.
- */
-
+import {Md5} from 'ts-md5/dist/md5';
 
 @Injectable()
 export class SignInService{
@@ -12,6 +9,11 @@ export class SignInService{
   }
 
   getCustomers(){
-    return this.http.get('http://localhost:8080/user');
+    return this.http.get('/user');
+  }
+
+  signIn(name: string, password: string): Int32Array | string{
+    let p = Md5.hashStr(password);
+    return p;
   }
 }

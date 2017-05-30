@@ -1,8 +1,6 @@
 <div class="sign mat-elevation-z6  Absolute-Center">
-  <form>
-{{user | json}}
-    {{data | json}}
-   <!-- <h3>登录</h3>
+  <form (submit)="submit()">
+    <h3>登录</h3>
     <md-input-container >
       <input mdInput  placeholder="用户名" [(ngModel)]="user.name" #personName="ngModel" required name="name">
     </md-input-container>
@@ -16,6 +14,7 @@
     </div>
     <p></p>
     <h5 class="p-3"> 合作账号  </h5>
-    <p class="p-3"> QQ[伪] </p>-->
+    <p class="p-3"> QQ[伪] </p>
+    <p>{{pss}}</p>
   </form>
 </div>

@@ -1,30 +1,36 @@
-import {Component, OnInit} from "@angular/core";
-import {User} from "../../../shared/model/user.model";
-import {SignInService} from "./sign-in.service";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {User} from '../../shared/model/user.model';
+import {AuthService} from '../../shared/service/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css'],
-  providers: [SignInService]
+  providers: [AuthService]
 })
 export class SignInComponent implements OnInit {
+  @Output() signedEvent = new EventEmitter<Boolean>();
   user: User;
   checkPassword: string;
   data: any;
+  pss: any;
 
-  constructor(private signInService: SignInService) {
+  constructor(private authService: AuthService,
+              private router: Router,
+             ) {
   }
 
   ngOnInit() {
     this.user = {};
-    this.signInService.getCustomers()
-      .map(res => res.json().data as User[])
-      .subscribe(data => {
-        this.user = data[0];
-        this.data = data;
-      });
-    this.checkPassword = null;
   }
 
+  submit() {
+    this.authService.login(this.user.name, this.user.password)
+      .subscribe(data => {
+        console.log(data);
+        this.router.navigate(['/homepage']);
+        console.log(1);
+      }, error2 => console.log(error2));
+  }
 }
