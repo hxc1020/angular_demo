@@ -1,5 +1,5 @@
 <div class="sign mat-elevation-z6  Absolute-Center">
-  <form (submit)="submit()">
+  <form #userForm = "ngForm">
     <h3>登录</h3>
     <md-input-container >
       <input mdInput  placeholder="用户名" [(ngModel)]="user.name" #personName="ngModel" required name="name">
@@ -9,7 +9,7 @@
     </md-input-container>
 
     <div class="m-1">
-      <button md-raised-button color="primary">登录</button>
+      <button md-raised-button color="primary" type="button" [disabled] = "!userForm.valid" (click)="submit()">登录</button>
       <button md-raised-button color="primary" class="ml-2">取消</button>
     </div>
     <p></p>

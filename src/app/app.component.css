@@ -1,7 +1,22 @@
 .logo {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  overflow: hidden;
   float: left;
-  height: 56px;
-  padding: 14px 25px 15px 20px;
+}
+
+.my-title {
+  height: 50px;
+  padding-top: 12px;
+  padding-bottom: 16px;
+  background-color: #24292e;
+  margin-bottom: 12px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .write-btn {
@@ -15,6 +30,22 @@
   color: #fff;
   background-color: #ea6f5a;
 }
+
+a {
+  display: block;
+  color: #c1c3c6;
+  outline: none !important;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+a:hover {
+  color: #f6fcff;
+}
+
 
 .nav-name {
   display: inline-block;
@@ -36,13 +67,15 @@
   overflow-y: visible;
 }
 
-
-.header-wrapper {
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
+.material-icons.md-light {
+  color: rgb(2, 5, 4);
 }
-.material-icons.md-light { color: rgb(2, 5, 4);
+
+
+.foot{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  /*background-color: black;*/
 }
