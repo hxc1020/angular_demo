@@ -1,17 +1,12 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {ModuleWithProviders, NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
-import {
-  MdButtonModule, MdCardModule, MdCheckboxModule, MdTabsModule,
-  MdToolbarModule, MdSidenavModule, MdIconModule, MdListModule,
-  MdChipsModule, MdGridListModule, MdInputModule, MdMenuModule
-} from '@angular/material';
-import {RouterModule} from '@angular/router';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+import {HttpModule} from '@angular/http';
+import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 
-import {AlertModule, CarouselModule} from 'ngx-bootstrap';
+import {AlertModule, CarouselModule, ModalModule, ButtonsModule} from 'ngx-bootstrap';
 import {HomepageComponent} from './home/homepage/homepage.component';
 import {rootRouterConfig} from './app.routes';
 import {NoticeComponent} from './notice/notice.component';
@@ -29,6 +24,8 @@ import {SignInService} from './sign/sign-in/sign-in.service';
 import {MyHttp} from './shared/service/MyHttp';
 import {AuthService} from './shared/service/auth.service';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { SignComponent } from './sign/sign.component';
+import {MdModule} from './shared/md.module';
 
 
 const rootRouterModule: ModuleWithProviders = RouterModule.forRoot(rootRouterConfig);
@@ -38,16 +35,15 @@ const rootRouterModule: ModuleWithProviders = RouterModule.forRoot(rootRouterCon
   declarations: [
     AppComponent, HomepageComponent, NoticeComponent,
     ActivityComponent, BlogComponent, BookComponent, PersonalComponent,
-    AboutComponent, RegisterComponent, NoteComponent, SignInComponent, SignUpComponent, UserInfoComponent
+    AboutComponent, RegisterComponent, NoteComponent, SignInComponent, SignUpComponent, UserInfoComponent, SignComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    FormsModule, ReactiveFormsModule,
     HttpModule,
     RouterModule,
-    MdButtonModule, MdCheckboxModule, MdTabsModule, MdCardModule, MdToolbarModule, MdSidenavModule,
-    MdIconModule, MdListModule, MdChipsModule, MdGridListModule, MdInputModule, MdMenuModule,
-    AlertModule.forRoot(), CarouselModule,
+    MdModule.forRoot(),
+    AlertModule.forRoot(), CarouselModule, ModalModule.forRoot(), ButtonsModule.forRoot(),
     rootRouterModule,
     BrowserAnimationsModule, NoopAnimationsModule
   ],

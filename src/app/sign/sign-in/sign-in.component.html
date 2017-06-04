@@ -1,20 +1,24 @@
-<div class="sign mat-elevation-z6  Absolute-Center">
-  <form #userForm = "ngForm">
-    <h3>登录</h3>
-    <md-input-container >
-      <input mdInput  placeholder="用户名" [(ngModel)]="user.name" #personName="ngModel" required name="name">
+<!--<div class="sign  Absolute-Center">-->
+<div class="pl-4">
+  <form #userForm="ngForm">
+    <!--<h3>登录</h3>-->
+    <md-input-container>
+      <input mdInput placeholder="用户名" [(ngModel)]="user.name" #personName="ngModel" required name="name">
     </md-input-container>
     <md-input-container class="example-full-width">
-      <input mdInput type="password" placeholder="密码" [(ngModel)]="user.password" #personName="ngModel" required name="password">
+      <input mdInput type="password" placeholder="密码" [(ngModel)]="user.password" #personName="ngModel" required
+             name="password">
     </md-input-container>
 
     <div class="m-1">
-      <button md-raised-button color="primary" type="button" [disabled] = "!userForm.valid" (click)="submit()">登录</button>
-      <button md-raised-button color="primary" class="ml-2">取消</button>
+      <button md-raised-button color="primary" type="button" [disabled]="!userForm.valid" (click)="submit()">登录</button>
+      <button md-raised-button color="primary" (click)="cancel()" class="ml-2">取消</button>
     </div>
     <p></p>
-    <h5 class="p-3"> 合作账号  </h5>
+    <h5 class="p-3"> 合作账号 </h5>
     <p class="p-3"> QQ[伪] </p>
     <p>{{pss}}</p>
   </form>
 </div>
+
+<!--</div>-->

@@ -50,10 +50,7 @@
       "config": "./karma.conf.js"
     }
   },
-  "styles": [
-    "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-    "styles.css"
-  ],
+
   "defaults": {
     "styleExt": "css",
     "component": {}

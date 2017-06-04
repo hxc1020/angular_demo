@@ -1,0 +1,37 @@
+<div *ngIf="!isSigned()">
+  <a href="javascript:void(0);" (click)="signUpModal.show()"><span>注册</span></a>
+  <a href="javascript:void(0);" (click)="signInModal.show()" class="ml-3"> <span>登录</span></a>
+</div>
+<div *ngIf="isSigned()">
+  <app-user-info></app-user-info>
+</div>
+
+<!--<button type="button" class="btn btn-primary" (click)="staticModal.show()">Static modal</button>-->
+
+<div class="modal fade" bsModal #signInModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">登录</h4>
+      </div>
+      <div class="modal-body">
+        <app-sign-in (signedEvent)="signInModal.hide()"></app-sign-in>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #signUpModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">注册</h4>
+      </div>
+      <div class="modal-body">
+        <app-sign-up (signUpEvent)="signUpModal.hide()"></app-sign-up>
+      </div>
+    </div>
+  </div>
+</div>

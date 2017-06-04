@@ -12,23 +12,10 @@
   padding-bottom: 16px;
   background-color: #24292e;
   margin-bottom: 12px;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
-.write-btn {
-  float: right;
-  width: 100px;
-  height: 38px;
-  line-height: 24px;
-  margin: 9px 15px 0;
-  border-radius: 4px;
-  font-size: 15px;
-  color: #fff;
-  background-color: #ea6f5a;
+  /*left: 0;*/
+  /*position: fixed;*/
+  /*top: 0;*/
+  /*width: 100%;*/
 }
 
 a {
@@ -54,21 +41,8 @@ a:hover {
   color: #0f0b52;
 }
 
-.app-nav-css {
-  height: 80vh;
-  width: 100%;
-}
-
 .w-15 {
   width: 15%;
-}
-
-.app-overflow {
-  overflow-y: visible;
-}
-
-.material-icons.md-light {
-  color: rgb(2, 5, 4);
 }
 
 

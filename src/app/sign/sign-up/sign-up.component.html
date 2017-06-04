@@ -1,23 +1,26 @@
-<div class="sign mat-elevation-z6  Absolute-Center">
-  <form>
-
-    <h3>注册</h3>
+<div class="pl-4">
+  <form [formGroup]="userForm">
     <md-input-container >
-      <input mdInput  placeholder="用户名" [(ngModel)]="user.name" #personName="ngModel" required name="name">
+      <input mdInput  placeholder="用户名" [(ngModel)]="user.name"
+
+             formControlName="name"
+             required >
     </md-input-container>
     <md-input-container class="example-full-width">
-      <input mdInput type="password" placeholder="密码" [(ngModel)]="user.password" #personName="ngModel" required name="password">
+      <input mdInput type="password" placeholder="密码" [(ngModel)]="user.password"
+             required formControlName="password">
     </md-input-container>
     <md-input-container class="example-full-width">
-      <input mdInput type="password" placeholder="再次输入" [(ngModel)]="checkPassword" #personName="ngModel" required name="password">
+      <input mdInput type="password" placeholder="再次输入" [(ngModel)]="checkPassword"
+             required formControlName="checkPassword">
     </md-input-container>
 
-    <div class="m-1">
-      <button md-raised-button color="primary">注册</button>
-      <button md-raised-button color="primary" class="ml-2">取消</button>
-    </div>
-    <p></p>
-    <h5 class="p-3"> 合作账号  </h5>
-    <p class="p-3"> QQ[伪] </p>
   </form>
+  <div class="m-1">
+    <button md-raised-button color="primary" [disabled]="!userForm.valid" (click)="submit()">注册</button>
+    <button md-raised-button color="primary" class="ml-2" (click)="cancel()">取消</button>
+  </div>
+  <p></p>
+  <h5 class="p-3"> 合作账号  </h5>
+  <p class="p-3"> QQ[伪] </p>
 </div>

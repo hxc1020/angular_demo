@@ -1,26 +1,24 @@
 <div class="my-title">
   <div class="container">
-    <span><a class="logo mr-5"><img src="../assets/img/home/logo.PNG" class="">社区</a></span>
+    <span><a class="logo mr-5"><img src="../assets/img/home/logo.jpg" class="">社区</a></span>
     <a *ngFor="let link of links" [routerLink]="link.link" class="float-left">
       <!--<i class="material-icons md-light">{{link.linkIcon}}</i>-->
       <span class=" ml-3">{{link.label}}</span>
     </a>
     <div class="float-right">
-      <div *ngIf="!isSigned()"><span> <a [routerLink]="['/sign-up']" md-button>注册</a></span>
-        <span><a [routerLink]="['/sign-in']" md-button>登录</a> </span></div>
-      <div *ngIf="isSigned()">
-        <app-user-info [name]="userName"></app-user-info>
-      </div>
+     <app-sign></app-sign>
     </div>
   </div>
 </div>
 
+
 <div class="container p-3 py-5 my-5">
   <div class="row">
-    <router-outlet (signedEvent)="signed()"></router-outlet>
+    <router-outlet></router-outlet>
   </div>
 
 </div>
+
 
 <div class="foot">
   <p>footer</p>

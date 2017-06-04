@@ -1,0 +1,23 @@
+a {
+  float: left;
+  display: block;
+  color: #c1c3c6;
+  outline: none !important;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+  transition: all .5s ease;
+}
+
+a:hover {
+  color: #f6fcff;
+}
+
+button{
+  color: white;
+}
+
+.top{
+  z-index: 9999;
+}

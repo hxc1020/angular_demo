@@ -19,7 +19,7 @@ export class AuthService {
     this.authEvents = new Subject<AuthEvent>();
   }
 
-  login(name: string, password: string): Observable<Response> {
+  signIn(name: string, password: string): Observable<Response> {
     const body = {
       name: name,
       password: password,
@@ -28,15 +28,31 @@ export class AuthService {
       const token = resp.json().token;
       const decodeToken = this.jwtHelper.decodeToken(token);
       localStorage.setItem('token', token);
-      localStorage.setItem('userName', decodeToken.userName);
       localStorage.setItem('userId', decodeToken.userId);
       this.authEvents.next(new DidLogin());
     });
   }
 
+  signUp(name: string, password: string): Observable<Response> {
+    const body = {
+      name: name,
+      password: password,
+    };
+    return this.http.post('/sign/up', body).do((resp: Response) => {
+      const token = resp.json().token;
+      const decodeToken = this.jwtHelper.decodeToken(token);
+      localStorage.setItem('token', token);
+      localStorage.setItem('userId', decodeToken.userId);
+      this.authEvents.next(new DidLogin());
+    });
+  }
+
+  checkUserName(name: string): Observable<Response> {
+    return this.http.get(`/sign/check/${name}`);
+  }
+
   logout(): void {
     localStorage.removeItem('token');
-    localStorage.removeItem('userName');
     localStorage.removeItem('userId');
     this.authEvents.next(new DidLogout());
   }

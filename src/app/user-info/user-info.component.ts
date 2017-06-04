@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/service/auth.service';
 
 @Component({
@@ -9,15 +9,16 @@ import {AuthService} from '../shared/service/auth.service';
 })
 export class UserInfoComponent implements OnInit {
 
-  @Input() name;
+  userId;
 
   constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.userId = localStorage.getItem('userId');
   }
 
-  logOut(){
+  logOut() {
     this.authService.logout();
   }
 }

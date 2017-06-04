@@ -14,8 +14,6 @@ export class SignInComponent implements OnInit {
   @Output() signedEvent = new EventEmitter<Boolean>();
   userForm: FormControl;
   user: User;
-  checkPassword: string;
-  data: any;
   pss: any;
 
   constructor(private authService: AuthService,
@@ -26,10 +24,6 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
     this.user = {};
     this.userForm = new FormControl('');
-    /*, Validators.compose([
-     Validators.required,
-     // Validators.minLength(4),
-     ])*/
   }
 
   submit() {
@@ -37,11 +31,11 @@ export class SignInComponent implements OnInit {
   }
 
   private signIn() {
-    this.authService.login(this.user.name, this.user.password)
+    this.authService.signIn(this.user.name, this.user.password)
       .subscribe(data => {
         console.log(data);
         this.router.navigate(['/homepage']);
-        console.log(1);
+        this.signedEvent.emit();
       }, err => {
         if (err.status === 401) {
           alert('用户名或密码不正确!');
@@ -50,8 +44,7 @@ export class SignInComponent implements OnInit {
         console.log(err);
       });
   }
-
-  isValid(): boolean{
-    return this.userForm.valid;
+  cancel(){
+    this.signedEvent.emit();
   }
 }

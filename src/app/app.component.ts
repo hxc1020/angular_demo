@@ -7,7 +7,6 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   links: Array<object>;
-  userName: string = null;
 
   ngOnInit(): void {
     this.links = this.getLinks();
@@ -40,11 +39,6 @@ export class AppComponent {
       linkIcon: 'announcement'
     }];
     return links;
-  }
-
-  isSigned(): Boolean {
-    this.userName = localStorage.getItem('userName');
-    return this.userName !== null && 'undefined' !== this.userName;
   }
 }
 
