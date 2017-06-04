@@ -2,17 +2,21 @@
   <form [formGroup]="userForm">
     <md-input-container >
       <input mdInput  placeholder="用户名" [(ngModel)]="user.name"
-
              formControlName="name"
-             required >
+             required >{{notUse}}
+      <md-hint *ngIf="!name.valid && name.touched" align="end">{{name.errors?.errMsg}}</md-hint>
+      <md-hint *ngIf="name.valid && name.touched" align="end">可以使用！</md-hint>
     </md-input-container>
     <md-input-container class="example-full-width">
       <input mdInput type="password" placeholder="密码" [(ngModel)]="user.password"
              required formControlName="password">
     </md-input-container>
     <md-input-container class="example-full-width">
-      <input mdInput type="password" placeholder="再次输入" [(ngModel)]="checkPassword"
+      <input mdInput type="password" placeholder="再次输入" [(ngModel)]="checkPassword" minlength="6"
+             #checkPass
              required formControlName="checkPassword">
+      <md-hint  align="head">{{checkPass.value.length}}/6</md-hint>
+      <md-hint *ngIf="!checkPassword.valid" align="end">2次输入不同！</md-hint>
     </md-input-container>
 
   </form>

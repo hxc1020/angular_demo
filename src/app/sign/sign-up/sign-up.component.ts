@@ -1,10 +1,11 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {User} from '../../shared/model/user.model';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {AuthService} from '../../shared/service/auth.service';
 import {Validators as AppValidators} from '../../shared/form/validators';
 import 'rxjs/add/operator/distinctUntilChanged';
-import {Observable} from 'rxjs/Rx';
+import 'rxjs/add/observable/fromEvent';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,14 +20,25 @@ export class SignUpComponent implements OnInit {
   password;
   user: User;
   checkPassword;
+  notUse;
+  private userNameStream = new Subject<string>();
 
   constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.userNameStream
+      .debounceTime(500)
+      .distinctUntilChanged()
+      .map(userName => this.authService.checkUserName(userName))
+      .map(sub => {
+        sub.subscribe(reps => this.notUse = reps.json().data);
+        return this.notUse;
+      }).subscribe();
     this.user = {};
     this.checkPassword = null;
-    this.name = new FormControl();
+    // this.name = new FormControl('', this.userNameUsed);
+    this.name = new FormControl('');
     this.password = new FormControl();
     this.checkPassword = new FormControl();
     this.userForm = new FormGroup({
@@ -34,7 +46,6 @@ export class SignUpComponent implements OnInit {
       password: this.password,
       checkPassword: this.checkPassword
     }, AppValidators.match(this.password, this.checkPassword));
-    this.checkUserName();
   }
 
   submit() {
@@ -59,24 +70,22 @@ export class SignUpComponent implements OnInit {
     this.signUpEvent.emit();
   }
 
-  checkUserName() {
+  checkUserName(name: string) {
     if (this.name.valid) {
-      console.log(this.name);
+      this.userNameStream.next(name);
     }
-    const input = document.querySelector('input');
-    Rx.Observable.fromEvent(document.querySelector('input'), 'keyup')
-      .debounceTime(500)
-      .distinctUntilChanged()
-      .switchMap()
-      .subscribe();
-    this.name.valueChanges
-      .debounceTime(500)
-      .distinctUntilChanged()
-      .switchMap(userName => this.authService.checkUserName(userName.value))
-      .subscribe(rep => {
-        if (rep.json().data) {
-          console.log(rep.json().data);
-        }
-      });
+  }
+
+  userNameUsed(nameForm: FormControl): ValidatorFn {
+    this.checkUserName(nameForm.value);
+    return (): { [key: string]: any } => {
+      if (this.notUse) {
+        return {
+          valid: false,
+          errMsg: '该用户已被注册'
+        };
+      }
+      return {};
+    };
   }
 }
