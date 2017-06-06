@@ -6,6 +6,7 @@ import {Validators as AppValidators} from '../../shared/form/validators';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import {Subject} from 'rxjs/Subject';
+import {RegisterValidators} from '../../shared/form/registerValidators';
 
 @Component({
   selector: 'app-sign-up',
@@ -38,14 +39,14 @@ export class SignUpComponent implements OnInit {
     this.user = {};
     this.checkPassword = null;
     // this.name = new FormControl('', this.userNameUsed);
-    this.name = new FormControl('');
-    this.password = new FormControl();
-    this.checkPassword = new FormControl();
+    this.name = new FormControl('', RegisterValidators.email());
+    this.password = new FormControl('', RegisterValidators.password());
+    this.checkPassword = new FormControl('', RegisterValidators.match(this.password));
     this.userForm = new FormGroup({
       name: this.name,
       password: this.password,
       checkPassword: this.checkPassword
-    }, AppValidators.match(this.password, this.checkPassword));
+    });
   }
 
   submit() {
