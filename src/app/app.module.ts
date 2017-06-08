@@ -26,7 +26,7 @@ import {AuthService} from './shared/service/auth.service';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { SignComponent } from './sign/sign.component';
 import {MdModule} from './shared/md.module';
-
+import { NoteDetailComponent } from './shared/component/note-detail/note-detail.component';
 
 const rootRouterModule: ModuleWithProviders = RouterModule.forRoot(rootRouterConfig);
 
@@ -35,7 +35,7 @@ const rootRouterModule: ModuleWithProviders = RouterModule.forRoot(rootRouterCon
   declarations: [
     AppComponent, HomepageComponent, NoticeComponent,
     ActivityComponent, BlogComponent, BookComponent, PersonalComponent,
-    AboutComponent, RegisterComponent, NoteComponent, SignInComponent, SignUpComponent, UserInfoComponent, SignComponent
+    AboutComponent, RegisterComponent, NoteComponent, SignInComponent, SignUpComponent, UserInfoComponent, SignComponent, NoteDetailComponent
   ],
   imports: [
     BrowserModule,
